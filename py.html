@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korematsu v. United States - 法庭意见书分析</title>
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --highlight: #e94560;
+            --text: #f1f1f1;
+            --text-secondary: #b0b0b0;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 2px solid var(--highlight);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><path fill="white" d="M50 0L100 50L50 100L0 50Z"/></svg>');
+            background-size: 50px;
+            opacity: 0.1;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .designer {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 5px 10px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+        }
+        
+        nav {
+            background-color: var(--secondary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .nav-item {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+            font-weight: 500;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-bottom: 3px solid var(--highlight);
+        }
+        
+        section {
+            padding: 3rem 0;
+            display: none;
+        }
+        
+        section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--highlight);
+            border-left: 4px solid var(--highlight);
+            padding-left: 15px;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--text);
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .tool-card {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .tool-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--highlight);
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .step-number {
+            background-color: var(--highlight);
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .case-elements {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .element-card {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+        }
+        
+        .element-title {
+            font-weight: bold;
+            color: var(--highlight);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .term-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            border-left: 4px solid var(--highlight);
+        }
+        
+        .term-english {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--highlight);
+        }
+        
+        .term-chinese {
+            color: var(--text-secondary);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        th {
+            background-color: var(--accent);
+            color: var(--highlight);
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        footer {
+            background-color: var(--secondary);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .nav-item {
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .tools-grid, .case-elements, .knowledge-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .designer {
+                position: static;
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="designer">设计者: 彭悦</div>
+        <div class="container">
+            <h1>Korematsu v. United States</h1>
+            <p class="subtitle">美国最高法院案例 (1944) - 交互式分析</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <div class="nav-item active" data-target="design-tools">1. 设计工具、方法、过程</div>
+            <div class="nav-item" data-target="case-elements">2. 法庭意见书要素</div>
+            <div class="nav-item" data-target="knowledge-base">3. 双语知识库</div>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <section id="design-tools" class="active">
+            <h2>设计工具、方法、过程</h2>
+            
+            <div class="card">
+                <h3>设计工具</h3>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">💻</div>
+                        <h4>HTML5</h4>
+                        <p>构建网页结构和内容</p>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">🎨</div>
+                        <h4>CSS3</h4>
+                        <p>实现现代化深色系设计</p>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">⚙️</div>
+                        <h4>JavaScript</h4>
+                        <p>添加交互功能和响应式行为</p>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">📱</div>
+                        <h4>响应式设计</h4>
+                        <p>确保在各种设备上完美显示</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>设计方法</h3>
+                <p>本设计采用现代化深色系配色方案，结合卡片式布局和微交互效果，创造高级、专业的视觉体验。主要设计原则包括：</p>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                    <li>层次分明的信息架构</li>
+                    <li>一致的视觉语言和设计系统</li>
+                    <li>流畅的过渡动画和交互反馈</li>
+                    <li>无障碍设计考虑</li>
+                    <li>移动优先的响应式策略</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>设计过程</h3>
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h4>需求分析</h4>
+                            <p>分析项目需求，确定需要展示的内容模块和功能要求。</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h4>信息架构</h4>
+                            <p>规划网站结构，设计导航系统和内容组织方式。</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h4>视觉设计</h4>
+                            <p>确定配色方案、字体选择和整体视觉风格，创建设计原型。</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <h4>前端开发</h4>
+                            <p>使用HTML、CSS和JavaScript实现设计，确保响应式布局。</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div>
+                            <h4>测试与优化</h4>
+                            <p>在不同设备和浏览器上测试网站，优化性能和用户体验。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="case-elements">
+            <h2>法庭意见书要素 (Case Brief Elements)</h2>
+            
+            <div class="case-elements">
+                <div class="element-card">
+                    <div class="element-title">Case Citation</div>
+                    <p>Korematsu v. United States, 323 U.S. 214 (1944)</p>
+                </div>
+                
+                <div class="element-card">
+                    <div class="element-title">Parties</div>
+                    <p>Petitioner: Fred Korematsu<br>Respondent: United States</p>
+                </div>
+                
+                <div class="element-card">
+                    <div class="element-title">Procedural History</div>
+                    <p>Convicted in federal district court, affirmed by Circuit Court of Appeals, certiorari granted by Supreme Court.</p>
+                </div>
+                
+                <div class="element-card">
+                    <div class="element-title">Facts</div>
+                    <p>Korematsu, an American citizen of Japanese descent, remained in a military exclusion zone contrary to Civilian Exclusion Order No. 34.</p>
+                </div>
+                
+                <div class="element-card">
+                    <div class="element-title">Issue</div>
+                    <p>Whether the exclusion order violated Korematsu's constitutional rights.</p>
+                </div>
+                
+                <div class="element-card">
+                    <div class="element-title">Holding</div>
+                    <p>The Supreme Court upheld the conviction, finding the exclusion order constitutional as a wartime measure.</p>
+                </div>
+                
+                <div class="element-card">
+                    <div class="element-title">Reasoning</div>
+                    <p>The Court deferred to military judgment regarding necessity, distinguishing between racial prejudice and military necessity.</p>
+                </div>
+                
+                <div class="element-card">
+                    <div class="element-title">Dissenting Opinions</div>
+                    <p>Justices Roberts, Murphy, and Jackson filed dissenting opinions criticizing the decision as racial discrimination.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Majority Opinion Excerpt</h3>
+                <blockquote style="border-left: 4px solid var(--highlight); padding-left: 1rem; margin: 1rem 0; font-style: italic;">
+                    "It should be noted, to begin with, that all legal restrictions which curtail the civil rights of a single racial group are immediately suspect. That is not to say that all such restrictions are unconstitutional. It is to say that courts must subject them to the most rigid scrutiny. Pressing public necessity may sometimes justify the existence of such restrictions; racial antagonism never can."
+                </blockquote>
+                <p style="text-align: right;">— Justice Black, delivering the opinion of the Court</p>
+            </div>
+            
+            <div class="card">
+                <h3>Dissenting Opinion Excerpt</h3>
+                <blockquote style="border-left: 4px solid var(--highlight); padding-left: 1rem; margin: 1rem 0; font-style: italic;">
+                    "I dissent, because I think the indisputable facts exhibit a clear violation of Constitutional rights. This is not a case of keeping people off the streets at night... it is the case of convicting a citizen as a punishment for not submitting to imprisonment in a concentration camp, based on his ancestry, and solely because of his ancestry..."
+                </blockquote>
+                <p style="text-align: right;">— Justice Roberts, dissenting</p>
+            </div>
+        </section>
+        
+        <section id="knowledge-base">
+            <h2>双语知识库 (Bilingual Knowledge Base)</h2>
+            
+            <div class="card">
+                <h3>法律术语 (Legal Terms)</h3>
+                <div class="knowledge-grid">
+                    <div class="term-card">
+                        <div class="term-english">Certiorari</div>
+                        <div class="term-chinese">调卷令 - 上级法院向下级法院调取案卷进行复审的命令</div>
+                    </div>
+                    <div class="term-card">
+                        <div class="term-english">Due Process</div>
+                        <div class="term-chinese">正当程序 - 法律必须公平执行的基本宪法原则</div>
+                    </div>
+                    <div class="term-card">
+                        <div class="term-english">Equal Protection</div>
+                        <div class="term-chinese">平等保护 - 法律必须平等对待相似情况的人</div>
+                    </div>
+                    <div class="term-card">
+                        <div class="term-english">Strict Scrutiny</div>
+                        <div class="term-chinese">严格审查 - 对影响基本权利或涉及可疑分类的法律的最高审查标准</div>
+                    </div>
+                    <div class="term-card">
+                        <div class="term-english">War Powers</div>
+                        <div class="term-chinese">战争权力 - 政府在战争时期采取必要措施的宪法权力</div>
+                    </div>
+                    <div class="term-card">
+                        <div class="term-english">Executive Order</div>
+                        <div class="term-chinese">行政命令 - 总统发布的具有法律效力的指令</div>
+                    </div>
+                    <div class="term-card">
+                        <div class="term-english">Military Necessity</div>
+                        <div class="term-chinese">军事必要性 - 证明战时特殊措施合理的法律原则</div>
+                    </div>
+                    <div class="term-card">
+                        <div class="term-english">Habeas Corpus</div>
+                        <div class="term-chinese">人身保护令 - 要求将被拘留者带至法庭以确定拘留是否合法的令状</div>
+                    </div>
+                    <div class="term-card">
+                        <div class="term-english">Amicus Curiae</div>
+                        <div class="term-chinese">法庭之友 - 非案件当事方向法院提交意见的人或组织</div>
+                    </div>
+                    <div class="term-card">
+                        <div class="term-english">Misdemeanor</div>
+                        <div class="term-chinese">轻罪 - 比重罪轻微的犯罪行为</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>法律短语 (Legal Phrases)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>英文短语</th>
+                            <th>中文翻译</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pressing public necessity</td>
+                            <td>紧迫的公共必要性</td>
+                        </tr>
+                        <tr>
+                            <td>Racial antagonism</td>
+                            <td>种族对立</td>
+                        </tr>
+                        <tr>
+                            <td>Military exclusion zone</td>
+                            <td>军事禁区</td>
+                        </tr>
+                        <tr>
+                            <td>Constitutional rights</td>
+                            <td>宪法权利</td>
+                        </tr>
+                        <tr>
+                            <td>Judicial scrutiny</td>
+                            <td>司法审查</td>
+                        </tr>
+                        <tr>
+                            <td>War power of Congress</td>
+                            <td>国会的战争权力</td>
+                        </tr>
+                        <tr>
+                            <td>Equal protection of the laws</td>
+                            <td>法律的平等保护</td>
+                        </tr>
+                        <tr>
+                            <td>Procedural due process</td>
+                            <td>程序性正当程序</td>
+                        </tr>
+                        <tr>
+                            <td>Military imperative</td>
+                            <td>军事必要性</td>
+                        </tr>
+                        <tr>
+                            <td>Concentration camp</td>
+                            <td>集中营</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="card">
+                <h3>典型句型 (Typical Sentence Patterns)</h3>
+                <div class="knowledge-grid">
+                    <div class="term-card">
+                        <div class="term-english">"It should be noted, to begin with, that..."</div>
+                        <div class="term-chinese">"首先应当注意的是..." - 用于引入重要前提或原则</div>
+                    </div>
+                    <div class="term-card">
+                        <div class="term-english">"We are unable to conclude that..."</div>
+                        <div class="term-chinese">"我们不能断定..." - 用于表达法院的谨慎立场</div>
+                    </div>
+                    <div class="term-card">
+                        <div class="term-english">"Nothing short of apprehension... can constitutionally justify..."</div>
+                        <div class="term-chinese">"除非有...的担忧，否则宪法上不能证明...的正当性" - 用于设定高标准</div>
+                    </div>
+                    <div class="term-card">
+                        <div class="term-english">"We cannot reject as unfounded the judgment of..."</div>
+                        <div class="term-chinese">"我们不能认为...的判断是毫无根据的" - 用于表示对专业判断的尊重</div>
+                    </div>
+                    <div class="term-card">
+                        <div class="term-english">"I dissent, because I think..."</div>
+                        <div class="term-chinese">"我持异议，因为我认为..." - 用于开始表达不同意见</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>Korematsu v. United States 案例研究 - 设计者: 彭悦</p>
+            <p style="margin-top: 0.5rem; color: var(--text-secondary);">本网站仅用于教育目的</p>
+        </div>
+    </footer>
+
+    <script>
+        // 导航交互
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // 移除所有活动类
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+                
+                // 隐藏所有部分
+                document.querySelectorAll('section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // 添加活动类到当前项
+                this.classList.add('active');
+                
+                // 显示目标部分
+                const targetId = this.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+        
+        // 添加滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.padding = '1rem 0';
+            } else {
+                header.style.padding = '2rem 0';
+            }
+        });
+    </script>
+</body>
+</html>
